@@ -6,7 +6,9 @@ import com.hd.subject.domain.status.GenderCode;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import lombok.Data;
 
+@Data
 public class FindPatientResponseDto {
 
   String name;

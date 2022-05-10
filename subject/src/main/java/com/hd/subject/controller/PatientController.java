@@ -48,7 +48,7 @@ public class PatientController {
 
   @GetMapping("/{patientId}")
   public ResponseEntity<FindPatientResponseDto> findOne(@PathVariable Long patientId) {
-    FindPatientResponseDto responseDto = patientService.findOne(patientId);
+    FindPatientResponseDto responseDto = patientService.findById(patientId);
     return ResponseEntity.status(200).body(responseDto);
   }
 

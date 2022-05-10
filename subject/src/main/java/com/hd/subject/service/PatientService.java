@@ -47,7 +47,7 @@ public class PatientService {
     }
   }
 
-  public FindPatientResponseDto findOne(Long patientId) {
+  public FindPatientResponseDto findById(Long patientId) {
     Patient patient = getPatient(patientId);
     List<Visit> listVisited = visitRepository.findByPatientId(patientId);
 
