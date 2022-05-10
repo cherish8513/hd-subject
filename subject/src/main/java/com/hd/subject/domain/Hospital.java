@@ -4,8 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Hospital {
   @Id
   @GeneratedValue
@@ -20,4 +26,11 @@ public class Hospital {
 
   @Column(length = 10)
   private String directorName;
+
+  @Builder
+  public Hospital(String name, String institutionNumber, String directorName) {
+    this.name = name;
+    this.institutionNumber = institutionNumber;
+    this.directorName = directorName;
+  }
 }
