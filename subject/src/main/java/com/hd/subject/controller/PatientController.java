@@ -1,5 +1,6 @@
 package com.hd.subject.controller;
 
+import com.hd.subject.dto.request.ModifyPatientRequestDto;
 import com.hd.subject.dto.request.SavePatientRequestDto;
 import com.hd.subject.repository.PatientRepository;
 import com.hd.subject.service.PatientService;
@@ -27,6 +28,11 @@ public class PatientController {
     return ResponseEntity.status(200).build();
   }
 
+  @PatchMapping
+  public ResponseEntity<Void> modify(@RequestBody ModifyPatientRequestDto requestDto){
+    patientService.modify(requestDto);
+    return ResponseEntity.status(200).build();
+  }
   @DeleteMapping("/{patientId}")
   public ResponseEntity<Void> delete(@PathVariable Long patientId) {
     patientRepository.deleteById(patientId);

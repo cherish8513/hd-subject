@@ -52,4 +52,12 @@ public class Patient {
     this.birthday = birthday;
     this.phoneNumber = phoneNumber;
   }
+
+  public void changeName(String name){
+    this.name = name;
+  }
+
+  public void changePhoneNumber(String phoneNumber){
+    this.phoneNumber = phoneNumber;
+  }
 }
