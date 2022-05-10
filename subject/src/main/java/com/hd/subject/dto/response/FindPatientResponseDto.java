@@ -6,7 +6,6 @@ import com.hd.subject.domain.status.GenderCode;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
-import javax.persistence.Column;
 
 public class FindPatientResponseDto {
 
@@ -15,7 +14,6 @@ public class FindPatientResponseDto {
   String birthday;
   String phoneNumber;
   String registrationNumber;
-
   LocalDateTime visitedDate;
 
   public static FindPatientResponseDto of(Patient patient, List<Visit> visitList){
@@ -34,5 +32,18 @@ public class FindPatientResponseDto {
     });
     responseDto.visitedDate = visitList.get(0).getReceptionDate();
     return responseDto;
+  }
+
+  public FindPatientResponseDto() {
+  }
+
+  public FindPatientResponseDto(String name, GenderCode gender, String birthday,
+      String phoneNumber, String registrationNumber, LocalDateTime visitedDateList) {
+    this.name = name;
+    this.gender = gender.getDescription();
+    this.birthday = birthday;
+    this.phoneNumber = phoneNumber;
+    this.registrationNumber = registrationNumber;
+    this.visitedDate = visitedDateList;
   }
 }

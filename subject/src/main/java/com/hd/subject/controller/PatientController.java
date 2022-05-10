@@ -3,8 +3,10 @@ package com.hd.subject.controller;
 import com.hd.subject.dto.request.ModifyPatientRequestDto;
 import com.hd.subject.dto.request.SavePatientRequestDto;
 import com.hd.subject.dto.response.FindPatientResponseDto;
+import com.hd.subject.repository.PatientQueryRepository;
 import com.hd.subject.repository.PatientRepository;
 import com.hd.subject.service.PatientService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PatientController {
   private final PatientService patientService;
   private final PatientRepository patientRepository;
+  private final PatientQueryRepository patientQueryRepository;
 
   @PostMapping
   public ResponseEntity<Void> save(@RequestBody SavePatientRequestDto requestDto) {
@@ -43,6 +46,15 @@ public class PatientController {
   @GetMapping("/{patientId}")
   public ResponseEntity<FindPatientResponseDto> findOne(@PathVariable Long patientId) {
     FindPatientResponseDto responseDto = patientService.findOne(patientId);
+    return ResponseEntity.status(200).body(responseDto);
+  }
+
+  @GetMapping("/{page}/{limit}")
+  public ResponseEntity<List<FindPatientResponseDto>> findPage(@PathVariable int page,
+      @PathVariable int limit){
+    List<FindPatientResponseDto> responseDto = patientQueryRepository.findByPageAndLimit(page-1,
+        limit);
+
     return ResponseEntity.status(200).body(responseDto);
   }
 
