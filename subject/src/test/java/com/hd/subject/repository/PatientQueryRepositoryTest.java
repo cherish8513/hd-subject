@@ -13,13 +13,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class PatientQueryRepositoryTest {
+
   @Autowired
   private PatientQueryRepository patientQueryRepository;
   @Autowired
   private PatientRepository patientRepository;
 
   @Test
-  public void 환자목록조회테스트() throws Exception{
+  public void 환자목록조회테스트() throws Exception {
     //given
     patientRepository.save(createPatient(1));
     patientRepository.save(createPatient(2));
@@ -27,19 +28,20 @@ class PatientQueryRepositoryTest {
     patientRepository.save(createPatient(4));
 
     //when
-    List<FindPatientResponseDto> resultList = patientQueryRepository.findByPageAndLimit(0, 4, new SearchCondition());
+    List<FindPatientResponseDto> resultList = patientQueryRepository.findByPageAndLimit(0, 4,
+        new SearchCondition());
 
     //then
     Assertions.assertThat(resultList.size()).isEqualTo(4);
   }
 
-  private Patient createPatient(int index){
+  private Patient createPatient(int index) {
     return Patient.builder()
         .birthday("2000.01.01")
         .genderCode(GenderCode.CODE_M)
         .name("name")
         .phoneNumber("010-1234-5678")
-        .registrationNumber("01-00002"+index)
+        .registrationNumber("01-00002" + index)
         .build();
   }
 }

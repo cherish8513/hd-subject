@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Patient {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "patient_id")
@@ -53,11 +54,11 @@ public class Patient {
     this.phoneNumber = phoneNumber;
   }
 
-  public void changeName(String name){
+  public void changeName(String name) {
     this.name = name;
   }
 
-  public void changePhoneNumber(String phoneNumber){
+  public void changePhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 }

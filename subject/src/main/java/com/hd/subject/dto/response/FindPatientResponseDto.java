@@ -16,7 +16,20 @@ public class FindPatientResponseDto {
   String registrationNumber;
   LocalDateTime visitedDate;
 
-  public static FindPatientResponseDto of(Patient patient, List<Visit> visitList){
+  public FindPatientResponseDto() {
+  }
+
+  public FindPatientResponseDto(String name, GenderCode gender, String birthday,
+      String phoneNumber, String registrationNumber, LocalDateTime visitedDateList) {
+    this.name = name;
+    this.gender = gender.getDescription();
+    this.birthday = birthday;
+    this.phoneNumber = phoneNumber;
+    this.registrationNumber = registrationNumber;
+    this.visitedDate = visitedDateList;
+  }
+
+  public static FindPatientResponseDto of(Patient patient, List<Visit> visitList) {
     FindPatientResponseDto responseDto = new FindPatientResponseDto();
 
     responseDto.name = patient.getName();
@@ -32,18 +45,5 @@ public class FindPatientResponseDto {
     });
     responseDto.visitedDate = visitList.get(0).getReceptionDate();
     return responseDto;
-  }
-
-  public FindPatientResponseDto() {
-  }
-
-  public FindPatientResponseDto(String name, GenderCode gender, String birthday,
-      String phoneNumber, String registrationNumber, LocalDateTime visitedDateList) {
-    this.name = name;
-    this.gender = gender.getDescription();
-    this.birthday = birthday;
-    this.phoneNumber = phoneNumber;
-    this.registrationNumber = registrationNumber;
-    this.visitedDate = visitedDateList;
   }
 }

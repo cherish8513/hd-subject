@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class SavePatientRequestDto {
+
   Long hospitalId;
   String name;
   String phoneNumber;
