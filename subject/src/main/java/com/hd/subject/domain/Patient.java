@@ -1,7 +1,6 @@
 package com.hd.subject.domain;
 
 import com.hd.subject.domain.status.GenderCode;
-import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
