@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class SearchCondition {
+
   String patientName;
   String birthday;
   String registrationNumber;
