@@ -3,10 +3,13 @@ package com.hd.subject.service;
 import com.hd.subject.domain.Hospital;
 import com.hd.subject.domain.Patient;
 import com.hd.subject.domain.status.GenderCode;
+import com.hd.subject.dto.request.FindPatientRequestDto;
 import com.hd.subject.dto.request.ModifyPatientRequestDto;
 import com.hd.subject.dto.request.SavePatientRequestDto;
+import com.hd.subject.dto.response.FindPatientResponseDto;
 import com.hd.subject.repository.HospitalRepository;
 import com.hd.subject.repository.PatientRepository;
+import com.hd.subject.repository.VisitRepository;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -41,13 +44,19 @@ public class PatientService {
     }
   }
 
-  public Hospital getHospital(Long hospitalId){
+  public FindPatientResponseDto findOne(Long patientId){
+    Patient patient = getPatient(patientId);
+
+    return FindPatientResponseDto.of(patient);
+  }
+
+  private Hospital getHospital(Long hospitalId){
     return hospitalRepository.findById(hospitalId)
         .orElseThrow(IllegalArgumentException::new);
   }
 
 
-  public Patient getPatient(Long patientId){
+  private Patient getPatient(Long patientId){
     return patientRepository.findById(patientId)
         .orElseThrow(IllegalArgumentException::new);
   }

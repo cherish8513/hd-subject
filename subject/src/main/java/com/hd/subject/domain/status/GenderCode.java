@@ -1,7 +1,9 @@
 package com.hd.subject.domain.status;
 
 import java.util.Arrays;
+import lombok.Getter;
 
+@Getter
 public enum GenderCode {
   CODE_M("남", 'M'), CODE_F("여", 'F');
 

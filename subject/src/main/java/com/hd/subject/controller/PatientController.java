@@ -2,6 +2,7 @@ package com.hd.subject.controller;
 
 import com.hd.subject.dto.request.ModifyPatientRequestDto;
 import com.hd.subject.dto.request.SavePatientRequestDto;
+import com.hd.subject.dto.response.FindPatientResponseDto;
 import com.hd.subject.repository.PatientRepository;
 import com.hd.subject.service.PatientService;
 import lombok.RequiredArgsConstructor;
@@ -38,4 +39,11 @@ public class PatientController {
     patientRepository.deleteById(patientId);
     return ResponseEntity.status(200).build();
   }
+
+  @GetMapping("/{patientId}")
+  public ResponseEntity<FindPatientResponseDto> findOne(@PathVariable Long patientId) {
+    FindPatientResponseDto responseDto = patientService.findOne(patientId);
+    return ResponseEntity.status(200).body(responseDto);
+  }
+
 }
