@@ -2,7 +2,6 @@ package com.hd.subject.service;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.OPTIONAL;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -15,7 +14,6 @@ import com.hd.subject.domain.Patient;
 import com.hd.subject.dto.request.SavePatientRequestDto;
 import com.hd.subject.repository.HospitalRepository;
 import com.hd.subject.repository.PatientRepository;
-import com.hd.subject.repository.VisitRepository;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -60,7 +58,7 @@ class PatientServiceTest {
     verify(patientRepository, times(1)).save(any(Patient.class));
   }
 
-  private SavePatientRequestDto createSaveReuqestDto(){
+  private SavePatientRequestDto createSaveReuqestDto() {
     SavePatientRequestDto requestDto = new SavePatientRequestDto();
     requestDto.setName("name");
     requestDto.setBirthday("2000-01-01");

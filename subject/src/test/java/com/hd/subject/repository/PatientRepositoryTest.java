@@ -1,7 +1,5 @@
 package com.hd.subject.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.hd.subject.domain.Patient;
 import com.hd.subject.domain.status.GenderCode;
 import org.assertj.core.api.Assertions;
@@ -16,7 +14,7 @@ class PatientRepositoryTest {
   private PatientRepository patientRepository;
 
   @Test
-  public void savePatient() throws Exception{
+  public void savePatient() throws Exception {
     //given
     Patient patient = Patient.builder()
         .birthday("2000.01.01")
