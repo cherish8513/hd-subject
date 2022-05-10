@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Patient {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "patient_id")
   private Long id;
 
@@ -49,6 +50,14 @@ public class Patient {
     this.registrationNumber = registrationNumber;
     this.genderCode = genderCode;
     this.birthday = birthday;
+    this.phoneNumber = phoneNumber;
+  }
+
+  public void changeName(String name){
+    this.name = name;
+  }
+
+  public void changePhoneNumber(String phoneNumber){
     this.phoneNumber = phoneNumber;
   }
 }
