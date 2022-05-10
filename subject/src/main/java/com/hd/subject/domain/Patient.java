@@ -1,7 +1,6 @@
 package com.hd.subject.domain;
 
 import com.hd.subject.domain.status.GenderCode;
-import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,8 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Patient {
   @Id
   @GeneratedValue
@@ -35,4 +40,15 @@ public class Patient {
 
   @Column(length = 20)
   private String phoneNumber;
+
+  @Builder
+  public Patient(Hospital hospital, String name, String registrationNumber,
+      GenderCode genderCode, String birthday, String phoneNumber) {
+    this.hospital = hospital;
+    this.name = name;
+    this.registrationNumber = registrationNumber;
+    this.genderCode = genderCode;
+    this.birthday = birthday;
+    this.phoneNumber = phoneNumber;
+  }
 }
