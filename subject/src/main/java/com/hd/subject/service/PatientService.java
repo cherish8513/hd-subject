@@ -2,6 +2,7 @@ package com.hd.subject.service;
 
 import com.hd.subject.domain.Hospital;
 import com.hd.subject.domain.Patient;
+import com.hd.subject.domain.Visit;
 import com.hd.subject.domain.status.GenderCode;
 import com.hd.subject.dto.request.FindPatientRequestDto;
 import com.hd.subject.dto.request.ModifyPatientRequestDto;
@@ -10,6 +11,7 @@ import com.hd.subject.dto.response.FindPatientResponseDto;
 import com.hd.subject.repository.HospitalRepository;
 import com.hd.subject.repository.PatientRepository;
 import com.hd.subject.repository.VisitRepository;
+import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Service;
 public class PatientService {
   private final HospitalRepository hospitalRepository;
   private final PatientRepository patientRepository;
+  private final VisitRepository visitRepository;
 
   public void save(SavePatientRequestDto requestDto) {
     Hospital hospital = getHospital(requestDto.getHospitalId());
@@ -46,8 +49,10 @@ public class PatientService {
 
   public FindPatientResponseDto findOne(Long patientId){
     Patient patient = getPatient(patientId);
+    List<Visit> listVisited = visitRepository.findByPatientId(patientId);
 
-    return FindPatientResponseDto.of(patient);
+
+    return FindPatientResponseDto.of(patient, listVisited);
   }
 
   private Hospital getHospital(Long hospitalId){
