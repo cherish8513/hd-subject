@@ -31,7 +31,7 @@ public class PatientService {
         .phoneNumber(requestDto.getPhoneNumber())
         .genderCode(GenderCode.findCode(requestDto.getGenderCode()))
         .birthday(requestDto.getBirthday())
-        .registrationNumber(UUID.randomUUID().toString())
+        .registrationNumber(UUID.randomUUID().toString().substring(0, 10))
         .build();
     patientRepository.save(patient);
   }
