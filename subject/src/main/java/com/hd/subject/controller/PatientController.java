@@ -1,5 +1,6 @@
 package com.hd.subject.controller;
 
+import com.hd.subject.dto.SearchCondition;
 import com.hd.subject.dto.request.ModifyPatientRequestDto;
 import com.hd.subject.dto.request.SavePatientRequestDto;
 import com.hd.subject.dto.response.FindPatientResponseDto;
@@ -49,13 +50,39 @@ public class PatientController {
     return ResponseEntity.status(200).body(responseDto);
   }
 
-  @GetMapping("/{page}/{limit}")
-  public ResponseEntity<List<FindPatientResponseDto>> findPage(@PathVariable int page,
+  @GetMapping("/name/{name}/{page}/{limit}")
+  public ResponseEntity<List<FindPatientResponseDto>> findPageByName(@PathVariable String name, @PathVariable int page,
       @PathVariable int limit){
+    SearchCondition condition = new SearchCondition();
+    condition.setPatientName(name);
     List<FindPatientResponseDto> responseDto = patientQueryRepository.findByPageAndLimit(page-1,
-        limit);
+        limit, condition);
 
     return ResponseEntity.status(200).body(responseDto);
   }
+
+  @GetMapping("/birthday/{birthday}/{page}/{limit}")
+  public ResponseEntity<List<FindPatientResponseDto>> findPageByBirthday(@PathVariable String birthday, @PathVariable int page,
+      @PathVariable int limit){
+    SearchCondition condition = new SearchCondition();
+    condition.setBirthday(birthday);
+    List<FindPatientResponseDto> responseDto = patientQueryRepository.findByPageAndLimit(page-1,
+        limit, condition);
+
+    return ResponseEntity.status(200).body(responseDto);
+  }
+
+
+  @GetMapping("/reg-num/{regNum}/{page}/{limit}")
+  public ResponseEntity<List<FindPatientResponseDto>> findPageByRegNum(@PathVariable String regNum, @PathVariable int page,
+      @PathVariable int limit){
+    SearchCondition condition = new SearchCondition();
+    condition.setRegistrationNumber(regNum);
+    List<FindPatientResponseDto> responseDto = patientQueryRepository.findByPageAndLimit(page-1,
+        limit, condition);
+
+    return ResponseEntity.status(200).body(responseDto);
+  }
+
 
 }

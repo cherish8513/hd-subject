@@ -3,6 +3,7 @@ package com.hd.subject.repository;
 
 import com.hd.subject.domain.Patient;
 import com.hd.subject.domain.status.GenderCode;
+import com.hd.subject.dto.SearchCondition;
 import com.hd.subject.dto.response.FindPatientResponseDto;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -26,7 +27,7 @@ class PatientQueryRepositoryTest {
     patientRepository.save(createPatient(4));
 
     //when
-    List<FindPatientResponseDto> resultList = patientQueryRepository.findByPageAndLimit(0, 4);
+    List<FindPatientResponseDto> resultList = patientQueryRepository.findByPageAndLimit(0, 4, new SearchCondition());
 
     //then
     Assertions.assertThat(resultList.size()).isEqualTo(4);
